@@ -1,6 +1,6 @@
-package com.ovct.lms.model.entities;
+package com.ovct.lms.model.entity;
 
-import com.ovct.lms.utill.enums.ScheduleType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ovct.lms.utill.enums.TeacherStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Getter
@@ -17,24 +15,24 @@ import java.util.List;
 @Where(clause = "isDeleted = 0")
 @Entity
 @NoArgsConstructor
-public class Schedule extends AbstractEntity{
+public class Teacher extends AbstractEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    private Course course;
+    private long userId;
 
-    private LocalTime startTime;
+    @OneToMany(mappedBy = "teacher")
+    private List<Course> courses;
 
-    private LocalTime endTime;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "teacher")
+    private List<SubjectTeacher> subjectTeachers;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ScheduleType scheduleType;
-
-    private LocalDate startDate;
+    private TeacherStatus teacherStatus;
 
     @Column(columnDefinition = "tinyint(1) default 0")
     private boolean isActive;

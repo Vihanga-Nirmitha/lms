@@ -1,7 +1,6 @@
-package com.ovct.lms.model.entities;
+package com.ovct.lms.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.ovct.lms.utill.enums.TeacherStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import java.util.List;
 @Where(clause = "isDeleted = 0")
 @Entity
 @NoArgsConstructor
-public class Instructor extends AbstractEntity{
+public class Assistant extends AbstractEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +23,6 @@ public class Instructor extends AbstractEntity{
     private long userId;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "instructor")
-    private List<CourseInstructor> courseInstructors;
+    @OneToMany(mappedBy = "assistant")
+    private List<CourseAssistant> courseAssistants;
 }

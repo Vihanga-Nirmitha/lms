@@ -1,4 +1,4 @@
-package com.ovct.lms.model.entities;
+package com.ovct.lms.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -14,7 +14,7 @@ import java.util.List;
 @Where(clause = "isDeleted = 0")
 @Entity
 @NoArgsConstructor
-public class Assistant extends AbstractEntity{
+public class Instructor extends AbstractEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,6 @@ public class Assistant extends AbstractEntity{
     private long userId;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "assistant")
-    private List<CourseAssistant> courseAssistants;
+    @OneToMany(mappedBy = "instructor")
+    private List<CourseInstructor> courseInstructors;
 }

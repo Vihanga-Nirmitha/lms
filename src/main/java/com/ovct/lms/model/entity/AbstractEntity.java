@@ -1,4 +1,4 @@
-package com.ovct.lms.model.entities;
+package com.ovct.lms.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
