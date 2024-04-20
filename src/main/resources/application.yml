@@ -1,0 +1,40 @@
+server:
+  port: 8090
+  tomcat:
+    threads:
+      max: 300
+  servlet:
+    context-path: /ovct-backend-lms
+base-url:
+  context-path: /learning-management-system
+app:
+  host: localhost:8090
+
+
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  sleuth:
+    sampler.probability: 1
+  datasource:
+    url: jdbc:mysql://localhost:3306/lms
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      show-sql: false
+      open-in-view: false
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    org.springframework.web.filter.CommonRequestLoggingFilter: DEBUG
+    com.ovct.lms: DEBUG
