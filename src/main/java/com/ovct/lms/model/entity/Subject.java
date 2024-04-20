@@ -1,4 +1,4 @@
-package com.ovct.lms.model.entities;
+package com.ovct.lms.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

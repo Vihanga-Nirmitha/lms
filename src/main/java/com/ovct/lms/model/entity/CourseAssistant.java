@@ -1,4 +1,4 @@
-package com.ovct.lms.model.entities;
+package com.ovct.lms.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -7,14 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Where(clause = "isDeleted = 0")
 @Entity
 @NoArgsConstructor
-public class SubjectTeacher extends AbstractEntity{
+public class CourseAssistant extends AbstractEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +20,12 @@ public class SubjectTeacher extends AbstractEntity{
 
     @ManyToOne
     @JsonBackReference
-    private Subject subject;
+    private Assistant assistant;
 
     @ManyToOne
     @JsonBackReference
-    private Teacher teacher;
+    private Course course;
 
-    private int priorExperience;
-
-    @OneToMany(mappedBy = "subjectTeacher")
-    private List<Qualification> qualifications;
+    @Column(columnDefinition = "tinyint(1) default 0")
+    private boolean isActive;
 }

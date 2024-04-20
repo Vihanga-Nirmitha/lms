@@ -1,4 +1,4 @@
-package com.ovct.lms.model.entities;
+package com.ovct.lms.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.util.List;
 @Where(clause = "isDeleted = 0")
 @Entity
 @NoArgsConstructor
-public class Qualification extends AbstractEntity{
+public class Grade extends AbstractEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,8 @@ public class Qualification extends AbstractEntity{
 
     private String name;
 
-    private String description;
+    private int number;
 
-    @ManyToOne
-    private SubjectTeacher subjectTeacher;
+    @OneToMany(mappedBy = "grade")
+    private List<Course> courses;
 }
